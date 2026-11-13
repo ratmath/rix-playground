@@ -6,7 +6,7 @@
  */
 
 import { Fraction } from "@ratmath/core";
-import { Parser } from "@ratmath/parser";
+import { fractionFromInput } from "./stern-brocot-jump.js";
 import { createSternBrocotRixBridge } from "./rix-stern-brocot-bridge.js";
 
 class SternBrocotTreeVisualizer {
@@ -824,23 +824,8 @@ class SternBrocotTreeVisualizer {
         return;
       }
 
-      // Parse the input using the RatMath parser
-      const result = Parser.parse(input);
-      let fraction;
-
-      if (result.toRational) {
-        fraction = Fraction.fromRational(result.toRational());
-      } else if (
-        result.numerator !== undefined &&
-        result.denominator !== undefined
-      ) {
-        fraction = new Fraction(result.numerator, result.denominator);
-      } else {
-        throw new Error("Invalid input");
-      }
-
-      // Ensure the fraction is in lowest terms
-      fraction = fraction.reduce();
+      // Read the input as an exact R expression (3/4, 0.75, 1..2/3, 0.#3, 3.~7~15)
+      const fraction = fractionFromInput(input);
 
       this.elements.jumpInput.value = "";
       this.animateToNewFraction(fraction);

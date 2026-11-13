@@ -112,3 +112,21 @@ test("the generated-page decimal formatter keeps natural endings and short perio
         "1",
     ]);
 });
+
+test("the native explorer reads jump targets with Core's R, not the legacy parser", async () => {
+    const source = await read("src/stern-brocot-web.js");
+    expect(source).not.toContain("@ratmath/parser");
+
+    const { fractionFromInput } = await import("../src/stern-brocot-jump.js");
+    const text = (input) => fractionFromInput(input).toString();
+    expect(text("3/4")).toBe("3/4");
+    expect(text("0.75")).toBe("3/4");
+    expect(text("1..2/3")).toBe("5/3");
+    expect(text("0.#3")).toBe("1/3");
+    expect(text("3.~7~15~1")).toBe("355/113");
+    expect(text("6/8")).toBe("3/4");
+    expect(text("1/2 + 1/3")).toBe("5/6");
+    expect(text("-7/2")).toBe("-7/2");
+    expect(() => fractionFromInput("1:2")).toThrow("not an interval");
+    expect(() => fractionFromInput("abc")).toThrow();
+});
