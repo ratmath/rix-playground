@@ -215,7 +215,7 @@ $items := nextItems;
 {: $derived, $items };
 ```
 
-## Translation syntax: RX1701, RX1702, and RX1704 through RX1709
+## Translation syntax: RX1701, RX1702, and RX1704 through RX1710
 
 Lowercase `f(2)` is implicit multiplication, collections are one-based, braces
 create scope, and a bare uppercase callable can mean the function value rather
@@ -224,7 +224,9 @@ base fractions must not accidentally mix `#` input with ordinary decimal
 input. A pipe written after an unparenthesised lambda body receives the
 function itself, because `->` binds tighter than a pipe. A factor written
 directly after a fraction joins its denominator: `1/2x` is `1/(2x)`, while
-`1/2 x` is half of `x`.
+`1/2 x` is half of `x`. An interval colon written without spaces groups with
+the unspaced text around it, so `1:2 + 3:4` adds two intervals; the fully
+unspaced `1:2+3:4` means the same but should be written with spaces.
 
 Problem:
 
@@ -243,7 +245,8 @@ F(value) -> value + 1;
     F,
     #101/11,
     values |>> ((v) -> [v, 2] |>: @*[2]),
-    1/2x
+    1/2x,
+    1:2+3:4
 ];
 ```
 
@@ -262,7 +265,8 @@ x = 2;
     F(3),
     #101/#11,
     values |>> ((v) -> ([v, 2] |>: @*[2])),
-    0.5 x
+    0.5 x,
+    1:2 + 3:4
 ];
 ```
 
