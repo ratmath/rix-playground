@@ -1,22 +1,21 @@
 import {
-  replayTutorialSourcesAsync,
-  tutorialSectionCells
-} from "./chunk-v0hv1shm.js";
-import {
-  createRixRepl
-} from "./chunk-btazq016.js";
-import {
-  PluginCatalog,
   decodeOutputJSON,
   formatValue,
+  readPluginHeader,
+  PluginCatalog,
   lintRix,
-  mountOutputWidgets,
-  readPluginHeader
-} from "./chunk-kx4t6gwn.js";
+  mountOutputWidgets
+} from "./chunk-k8pbwn3m.js";
+import {
+  createRixRepl
+} from "./chunk-9zc7p0hf.js";
+import {
+  replayTutorialSourcesAsync,
+  tutorialSectionCells
+} from "./chunk-5ywpssbc.js";
 import {
   mountTutorialNavigation
-} from "./chunk-g5p2fpmt.js";
-import"./chunk-9v01vpwy.js";
+} from "./chunk-s8cxq4tx.js";
 
 // src/tutorial-object-help.js
 var objectHelp = {
@@ -197,12 +196,12 @@ function startTutorialExecution(sources, workerFactory = () => new Worker(new UR
   const worker = workerFactory();
   let settled = false;
   let resolveResult;
-  const finish = (result2) => {
+  const finish = (result) => {
     if (settled)
       return;
     settled = true;
     worker.terminate();
-    resolveResult(result2);
+    resolveResult(result);
   };
   const result = new Promise((resolve) => {
     resolveResult = resolve;
@@ -408,9 +407,9 @@ function toggleContents() {
   const shell = document.querySelector(".tutorial-shell");
   if (window.matchMedia("(max-width: 760px)").matches) {
     const expanded = shell.classList.toggle("sidebar-expanded");
-    const toggle2 = document.querySelector("#tutorial-contents-toggle");
-    toggle2.setAttribute("aria-expanded", String(expanded));
-    toggle2.textContent = expanded ? "Hide contents" : "Contents";
+    const toggle = document.querySelector("#tutorial-contents-toggle");
+    toggle.setAttribute("aria-expanded", String(expanded));
+    toggle.textContent = expanded ? "Hide contents" : "Contents";
     return;
   }
   const collapsed = shell.classList.toggle("sidebar-collapsed");
@@ -481,5 +480,5 @@ function openObjectHelp(name, requestedFunction = null) {
   dialog.showModal();
 }
 
-//# debugId=CDF9134BBBFD63A364756E2164756E21
+//# debugId=007110810A29F38064756E2164756E21
 //# sourceMappingURL=tutorial-runner.js.map

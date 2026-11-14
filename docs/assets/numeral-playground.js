@@ -1,15 +1,14 @@
 import {
+  formatOutputText,
+  renderOutputHtml,
+  encodeOutputJSON,
+  formatValue,
+  numeralValue,
   Context,
   createDefaultRegistry,
   createDefaultSystemContext,
-  encodeOutputJSON,
-  formatOutputText,
-  formatValue,
-  numeralValue,
-  parseAndEvaluate,
-  renderOutputHtml
-} from "./chunk-kx4t6gwn.js";
-import"./chunk-9v01vpwy.js";
+  parseAndEvaluate
+} from "./chunk-k8pbwn3m.js";
 
 // src/numeral-playground-model.js
 var field = (value, key) => value.entries.get(key.toLowerCase());
@@ -87,5 +86,5 @@ element("save-html").addEventListener("click", () => {
 });
 render();
 
-//# debugId=5D42B00713F0EBB764756E2164756E21
+//# debugId=3D530C9E91B9258664756E2164756E21
 //# sourceMappingURL=numeral-playground.js.map

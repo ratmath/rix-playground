@@ -1,11 +1,11 @@
 import {
-  Context,
   boundedExactExplorationInterval,
+  formatValue,
+  Context,
   createDefaultRegistry,
   createDefaultSystemContext,
-  formatValue,
   parseAndEvaluate
-} from "./chunk-kx4t6gwn.js";
+} from "./chunk-k8pbwn3m.js";
 
 // src/rix-stern-brocot-bridge.js
 function mapField(value, name) {
@@ -134,5 +134,5 @@ function createSternBrocotRixBridge() {
 
 export { createSternBrocotRixBridge };
 
-//# debugId=F2A9BCC8CA3E149564756E2164756E21
-//# sourceMappingURL=chunk-dry0rv5a.js.map
+//# debugId=32C6A25D79EF54BC64756E2164756E21
+//# sourceMappingURL=chunk-wrqf0azg.js.map

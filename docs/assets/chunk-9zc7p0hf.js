@@ -1,161 +1,58 @@
 import {
-  Context,
-  Integer,
-  PluginCatalog,
   Rational,
   RationalInterval,
-  callWithConcreteArgs,
-  complete,
-  createActionControl,
-  createChoiceControl,
-  createDefaultRegistry,
-  createDefaultSystemContext,
-  createHoldControl,
-  createInputControl,
-  createOutputBundleHost,
-  createRangeControl,
-  createResetControl,
-  createSliderControl,
-  createToggleControl,
-  disposeAsyncResources,
+  Integer,
+  tokenize,
+  parse,
   exactExplorationInterval,
-  formatOutputText,
-  formatValue,
-  formatValueSource,
-  install,
-  install1 as install2,
-  install10 as install11,
-  install11 as install12,
-  install12 as install13,
-  install13 as install14,
-  install14 as install15,
-  install15 as install16,
-  install16 as install17,
-  install17 as install18,
-  install18 as install19,
-  install2 as install3,
-  install3 as install4,
-  install4 as install5,
-  install5 as install6,
-  install6 as install7,
-  install7 as install8,
-  install8 as install9,
-  install9 as install10,
-  irToText,
-  isOutputValue,
+  traceExactArithmetic,
   isReactiveNode,
   outputValueKind,
-  parse,
+  isOutputValue,
+  createSliderControl,
+  createInputControl,
+  createChoiceControl,
+  createToggleControl,
+  createRangeControl,
+  createResetControl,
+  createActionControl,
+  createHoldControl,
+  formatOutputText,
+  renderOutputHtml,
+  createOutputBundleHost,
+  irToText,
+  disposeAsyncResources,
+  callWithConcreteArgs,
+  formatValueSource,
+  formatValue,
+  complete,
+  PluginCatalog,
+  Context,
+  install,
+  install2,
+  install3,
+  install4,
+  install5,
+  install6,
+  install7,
+  install8,
+  install9,
+  install10,
+  install11,
+  install12,
+  install13,
+  install14,
+  install15,
+  install16,
+  install17,
+  install18,
+  install19,
+  createDefaultRegistry,
+  createDefaultSystemContext,
   parseAndEvaluate,
   parseAndEvaluateObserved,
-  parseAndEvaluateObservedAsync,
-  renderOutputHtml,
-  tokenize,
-  traceExactArithmetic
-} from "./chunk-kx4t6gwn.js";
-
-// standard-profile.rix
-var standard_profile_default = `## RiX-Web standard calculator profile.
-## Keep one directly selected plugin on each line. Dependencies load automatically.
-## Bare imports favor names expected in a scientific or graphical calculator;
-## aliases make collisions explicit. This file is executable by the RiX CLI too.
-.Plugin.Load("numerics"); .numerics[:Pow, :Sqrt, :Cbrt, :NthRoot, :Hypot, :Exp, :Expm1, :Log, :Log1p, :Ln, :Log2, :Log10, :Pi, :EulerGamma, :Sin, :Cos, :Tan, :Sec, :Csc, :Cot, :Sinc, :Asin, :Acos, :Atan, :Atan2, :Sinh, :Cosh, :Tanh, :Sech, :Csch, :Coth, :Asinh, :Acosh, :Atanh, :Radians, :Degrees, :Gamma, :LogGamma, :Beta, :LogBeta, :Digamma, :Trigamma, :Erf, :Erfc, :LambertW, :Zeta, :Refine];
-.Plugin.Load("bessel");
-.Plugin.Load("float"); .float[:Round, :Floor, :Ceiling];
-.Plugin.Load("algebra"); .algebra[:Polynomial, :Coefficients];
-.Plugin.Load("linalg"); .linalg[:Rref, :Rank, :Determinant, :Inverse, :LinearSolve=:Solve];
-.Plugin.Load("solve");
-.Plugin.Load("stats"); .stats[:Count, :Mean, :Quantile, :Median, :Variance, :SampleVariance, :NormalPDF, :NormalCDF, :NormalQuantile];
-.Plugin.Load("plot"); .plot[:GraphPolynomial=:Polynomial];
-.Plugin.Load("draw"); .draw[:DrawLine=:Line, :Polygon, :Label, :Box, :DrawCircle=:Circle];
-.Plugin.Load("geometry"); .geometry[:Point, :Line, :Circle, :Midpoint, :PerpendicularBisector, :Circumcircle, :Intersect];
-.Plugin.Load("data");
-.Plugin.Load("radix");
-`;
-
-// src/plugin-profile.js
-var RIX_WEB_PROFILE_NAME = "standard-v1";
-var RIX_WEB_PROFILE_BEGIN = `## RIX-WEB-PROFILE-BEGIN ${RIX_WEB_PROFILE_NAME}`;
-function commaValues(values) {
-  return values.flatMap((value) => String(value).split(",")).map((value) => value.trim().toLowerCase()).filter(Boolean);
-}
-function profileEntries(source = standard_profile_default) {
-  const entries = [];
-  for (const rawLine of String(source).replace(/\r/g, "").split(`
-`)) {
-    const line = rawLine.trim();
-    if (!line || line.startsWith("##"))
-      continue;
-    const match = line.match(/^\.Plugin\.Load\("([^"]+)"\)/);
-    if (!match)
-      throw new Error(`Invalid RiX-Web profile line: ${line}`);
-    entries.push({ id: match[1].toLowerCase(), source: line });
-  }
-  return entries;
-}
-var STANDARD_PLUGIN_IDS = Object.freeze(profileEntries().map(({ id }) => id));
-function pluginProfileFromUrl(input = "") {
-  const url = input instanceof URL ? input : new URL(String(input || "http://localhost/"), "http://localhost/");
-  const modes = commaValues(url.searchParams.getAll("plugins"));
-  return {
-    fresh: modes.includes("fresh"),
-    add: commaValues(url.searchParams.getAll("plugins-add")),
-    remove: commaValues(url.searchParams.getAll("plugins-remove"))
-  };
-}
-function normalizedSavedProfile(profile) {
-  if (!profile || typeof profile !== "object" || Array.isArray(profile))
-    return null;
-  if (!Array.isArray(profile.plugins) || typeof profile.source !== "string")
-    return null;
-  return {
-    name: typeof profile.name === "string" ? profile.name : "saved",
-    plugins: commaValues(profile.plugins),
-    source: profile.source.trim(),
-    warnings: []
-  };
-}
-function resolvePluginProfile(profile = {}, availablePluginIds = []) {
-  const saved = normalizedSavedProfile(profile);
-  if (saved)
-    return saved;
-  const available = new Set(Array.from(availablePluginIds, (id) => String(id).toLowerCase()));
-  const standard = profile?.fresh ? [] : profileEntries();
-  const removed = new Set(commaValues(profile?.remove || []));
-  const selected = standard.filter(({ id }) => !removed.has(id));
-  const selectedIds = new Set(selected.map(({ id }) => id));
-  const warnings = [];
-  for (const id of commaValues(profile?.add || [])) {
-    if (selectedIds.has(id))
-      continue;
-    if (available.size && !available.has(id)) {
-      warnings.push(`Unknown RiX-Web plugin '${id}' was ignored.`);
-      continue;
-    }
-    selected.push({ id, source: `.Plugin.Load(${JSON.stringify(id)});` });
-    selectedIds.add(id);
-  }
-  return {
-    name: profile?.fresh ? "fresh" : RIX_WEB_PROFILE_NAME,
-    plugins: selected.map(({ id }) => id),
-    source: selected.map(({ source }) => source).join(`
-`),
-    warnings
-  };
-}
-function markedPluginProfile(source) {
-  const match = String(source).match(/(?:^|\n)## RIX-WEB-PROFILE-BEGIN ([^\n]+)\n([\s\S]*?)\n## RIX-WEB-PROFILE-END(?=\n|$)/);
-  return match ? { name: match[1].trim(), source: match[2].trim(), matchedSource: match[0] } : null;
-}
-function stripMarkedPluginProfile(source, expectedProfileSource = null) {
-  const marked = markedPluginProfile(source);
-  if (!marked)
-    return String(source);
-  if (expectedProfileSource !== null && marked.source !== String(expectedProfileSource).trim())
-    return String(source);
-  return String(source).replace(marked.matchedSource, `
-`).replace(/^\s+/, "");
-}
+  parseAndEvaluateObservedAsync
+} from "./chunk-k8pbwn3m.js";
 
 // src/repl-source.js
 var statementClosers = new Set([")", "]", "}", "|}", ";}", "@}", "!}", ":}"]);
@@ -15698,7 +15595,7 @@ LinalgSparseIndices(value,shape,limits) -> {;
     indices=value ? :Tuple ?: value.ToArray() ?_ value;
     indices ? :Array ?_> .Error("Sparse indices must be an Array or Tuple");
     indices.Len()==shape.Len() ?_> .Error("Sparse index rank mismatch");
-    indices.All((key,axis)->(key ? :Integer) && key<=limits[:maxindex] && (shape[axis]==:countable ?: key>=0 ?_ key>=1 && key<=shape[axis]))
+    indices.All((key,axis)->(key ? :Integer) && key<=limits[:maxindex] && (shape[axis]==:countable ?: key>=0 ?_ (key>=1 && key<=shape[axis])))
       ?_> .Error("Sparse index is outside its axis or index budget");indices;
 };
 LinalgSparseCompare(left,right) -> {;
@@ -38686,6 +38583,109 @@ symbolicNamespace._proto = {=
   return catalog;
 }
 
+// standard-profile.rix
+var standard_profile_default = `## RiX-Web standard calculator profile.
+## Keep one directly selected plugin on each line. Dependencies load automatically.
+## Bare imports favor names expected in a scientific or graphical calculator;
+## aliases make collisions explicit. This file is executable by the RiX CLI too.
+.Plugin.Load("numerics"); .numerics[:Pow, :Sqrt, :Cbrt, :NthRoot, :Hypot, :Exp, :Expm1, :Log, :Log1p, :Ln, :Log2, :Log10, :Pi, :EulerGamma, :Sin, :Cos, :Tan, :Sec, :Csc, :Cot, :Sinc, :Asin, :Acos, :Atan, :Atan2, :Sinh, :Cosh, :Tanh, :Sech, :Csch, :Coth, :Asinh, :Acosh, :Atanh, :Radians, :Degrees, :Gamma, :LogGamma, :Beta, :LogBeta, :Digamma, :Trigamma, :Erf, :Erfc, :LambertW, :Zeta, :Refine];
+.Plugin.Load("bessel");
+.Plugin.Load("float"); .float[:Round, :Floor, :Ceiling];
+.Plugin.Load("algebra"); .algebra[:Polynomial, :Coefficients];
+.Plugin.Load("linalg"); .linalg[:Rref, :Rank, :Determinant, :Inverse, :LinearSolve=:Solve];
+.Plugin.Load("solve");
+.Plugin.Load("stats"); .stats[:Count, :Mean, :Quantile, :Median, :Variance, :SampleVariance, :NormalPDF, :NormalCDF, :NormalQuantile];
+.Plugin.Load("plot"); .plot[:GraphPolynomial=:Polynomial];
+.Plugin.Load("draw"); .draw[:DrawLine=:Line, :Polygon, :Label, :Box, :DrawCircle=:Circle];
+.Plugin.Load("geometry"); .geometry[:Point, :Line, :Circle, :Midpoint, :PerpendicularBisector, :Circumcircle, :Intersect];
+.Plugin.Load("data");
+.Plugin.Load("radix");
+`;
+
+// src/plugin-profile.js
+var RIX_WEB_PROFILE_NAME = "standard-v1";
+var RIX_WEB_PROFILE_BEGIN = `## RIX-WEB-PROFILE-BEGIN ${RIX_WEB_PROFILE_NAME}`;
+function commaValues(values) {
+  return values.flatMap((value) => String(value).split(",")).map((value) => value.trim().toLowerCase()).filter(Boolean);
+}
+function profileEntries(source = standard_profile_default) {
+  const entries = [];
+  for (const rawLine of String(source).replace(/\r/g, "").split(`
+`)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("##"))
+      continue;
+    const match = line.match(/^\.Plugin\.Load\("([^"]+)"\)/);
+    if (!match)
+      throw new Error(`Invalid RiX-Web profile line: ${line}`);
+    entries.push({ id: match[1].toLowerCase(), source: line });
+  }
+  return entries;
+}
+var STANDARD_PLUGIN_IDS = Object.freeze(profileEntries().map(({ id }) => id));
+function pluginProfileFromUrl(input = "") {
+  const url = input instanceof URL ? input : new URL(String(input || "http://localhost/"), "http://localhost/");
+  const modes = commaValues(url.searchParams.getAll("plugins"));
+  return {
+    fresh: modes.includes("fresh"),
+    add: commaValues(url.searchParams.getAll("plugins-add")),
+    remove: commaValues(url.searchParams.getAll("plugins-remove"))
+  };
+}
+function normalizedSavedProfile(profile) {
+  if (!profile || typeof profile !== "object" || Array.isArray(profile))
+    return null;
+  if (!Array.isArray(profile.plugins) || typeof profile.source !== "string")
+    return null;
+  return {
+    name: typeof profile.name === "string" ? profile.name : "saved",
+    plugins: commaValues(profile.plugins),
+    source: profile.source.trim(),
+    warnings: []
+  };
+}
+function resolvePluginProfile(profile = {}, availablePluginIds = []) {
+  const saved = normalizedSavedProfile(profile);
+  if (saved)
+    return saved;
+  const available = new Set(Array.from(availablePluginIds, (id) => String(id).toLowerCase()));
+  const standard = profile?.fresh ? [] : profileEntries();
+  const removed = new Set(commaValues(profile?.remove || []));
+  const selected = standard.filter(({ id }) => !removed.has(id));
+  const selectedIds = new Set(selected.map(({ id }) => id));
+  const warnings = [];
+  for (const id of commaValues(profile?.add || [])) {
+    if (selectedIds.has(id))
+      continue;
+    if (available.size && !available.has(id)) {
+      warnings.push(`Unknown RiX-Web plugin '${id}' was ignored.`);
+      continue;
+    }
+    selected.push({ id, source: `.Plugin.Load(${JSON.stringify(id)});` });
+    selectedIds.add(id);
+  }
+  return {
+    name: profile?.fresh ? "fresh" : RIX_WEB_PROFILE_NAME,
+    plugins: selected.map(({ id }) => id),
+    source: selected.map(({ source }) => source).join(`
+`),
+    warnings
+  };
+}
+function markedPluginProfile(source) {
+  const match = String(source).match(/(?:^|\n)## RIX-WEB-PROFILE-BEGIN ([^\n]+)\n([\s\S]*?)\n## RIX-WEB-PROFILE-END(?=\n|$)/);
+  return match ? { name: match[1].trim(), source: match[2].trim(), matchedSource: match[0] } : null;
+}
+function stripMarkedPluginProfile(source, expectedProfileSource = null) {
+  const marked = markedPluginProfile(source);
+  if (!marked)
+    return String(source);
+  if (expectedProfileSource !== null && marked.source !== String(expectedProfileSource).trim())
+    return String(source);
+  return String(source).replace(marked.matchedSource, `
+`).replace(/^\s+/, "");
+}
+
 // src/web-control-capabilities.js
 var constructors = new Map([
   ["Slider", createSliderControl],
@@ -38741,10 +38741,10 @@ function nextCodeToken(tokens, index) {
   }
   return null;
 }
-function expandDeclarativeWebControls(source, tokenize2) {
+function expandDeclarativeWebControls(source, tokenize) {
   let tokens;
   try {
-    tokens = tokenize2(source);
+    tokens = tokenize(source);
   } catch {
     return source;
   }
@@ -39363,5 +39363,5 @@ function createRixRepl({ autoSeparateLines = true, autoLoadPlugins = true, plugi
 
 export { pluginProfileFromUrl, stripMarkedPluginProfile, findHelp, createRixRepl };
 
-//# debugId=3AA70824FC0DE7C464756E2164756E21
-//# sourceMappingURL=chunk-btazq016.js.map
+//# debugId=93DDEC3E019C464E64756E2164756E21
+//# sourceMappingURL=chunk-9zc7p0hf.js.map

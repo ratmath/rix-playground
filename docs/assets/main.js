@@ -1,27 +1,26 @@
 import {
-  createSternBrocotRixBridge
-} from "./chunk-dry0rv5a.js";
-import {
-  createRixRepl,
-  findHelp,
-  pluginProfileFromUrl,
-  stripMarkedPluginProfile
-} from "./chunk-btazq016.js";
-import {
-  Integer,
   Rational,
   RationalInterval,
+  Integer,
   boundedExactExplorationInterval,
-  createControlPanel,
   createExactNumberLineGraphic,
-  createGeometryAuthoringProgram,
-  enhanceGraphicViews,
-  mountOutputWidgets,
+  traceExactArithmetic,
+  createControlPanel,
   renderGraphicSvg,
   renderOutputHtml,
-  traceExactArithmetic
-} from "./chunk-kx4t6gwn.js";
-import"./chunk-9v01vpwy.js";
+  createGeometryAuthoringProgram,
+  enhanceGraphicViews,
+  mountOutputWidgets
+} from "./chunk-k8pbwn3m.js";
+import {
+  pluginProfileFromUrl,
+  stripMarkedPluginProfile,
+  findHelp,
+  createRixRepl
+} from "./chunk-9zc7p0hf.js";
+import {
+  createSternBrocotRixBridge
+} from "./chunk-wrqf0azg.js";
 
 // src/interval-explorer.js
 function rationalValue(value) {
@@ -332,7 +331,7 @@ class IntervalExplorer {
     }
   }
   renderEditor() {
-    this.selectionElement.replaceChildren(...this.items.map((item2, index) => Object.assign(document.createElement("option"), { value: String(index), textContent: item2.label })));
+    this.selectionElement.replaceChildren(...this.items.map((item, index) => Object.assign(document.createElement("option"), { value: String(index), textContent: item.label })));
     this.selectionElement.value = String(this.selectedIndex);
     const item = this.selected();
     this.startElement.value = item.value.start.toString();
@@ -682,7 +681,7 @@ class ReactiveDashboard {
   renderControls() {
     this.controlDisposer?.();
     this.controlDisposer = null;
-    const controls = this.descriptors.flatMap(({ controls: controls2 }) => controls2);
+    const controls = this.descriptors.flatMap(({ controls }) => controls);
     this.controlsSection.hidden = controls.length === 0;
     this.controlsElement.replaceChildren();
     if (!controls.length)
@@ -2162,5 +2161,5 @@ window.addEventListener("pagehide", () => {
   repl.dispose();
 });
 
-//# debugId=1337201C9F8B582A64756E2164756E21
+//# debugId=95FB16F7A8E2F29F64756E2164756E21
 //# sourceMappingURL=main.js.map
