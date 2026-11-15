@@ -27,7 +27,7 @@ summary := .Table(
 ]) ;
 ```
 
-The label is useful to a renderer or exporter even though RiX Web simply shows
+The label is useful to a renderer or exporter even though RiX Playground simply shows
 the figure in place. Keep labels stable when you expect a document to grow.
 
 ## Write a compact document template
@@ -159,7 +159,7 @@ curve := .plot.Polynomial([1, -2, -1], [-1, 4]);
 ## Build a deck one slide at a time
 
 `.Slide` attaches a title and optional metadata to one output value. `.Slides`
-preserves the order of those slides. RiX Web renders the current deck as a
+preserves the order of those slides. RiX Playground renders the current deck as a
 series of clearly separated slide sections; other hosts can add navigation or
 export without changing the RiX source.
 

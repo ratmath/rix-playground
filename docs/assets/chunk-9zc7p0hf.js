@@ -38584,7 +38584,7 @@ symbolicNamespace._proto = {=
 }
 
 // standard-profile.rix
-var standard_profile_default = `## RiX-Web standard calculator profile.
+var standard_profile_default = `## RiX Playground standard calculator profile.
 ## Keep one directly selected plugin on each line. Dependencies load automatically.
 ## Bare imports favor names expected in a scientific or graphical calculator;
 ## aliases make collisions explicit. This file is executable by the RiX CLI too.
@@ -38617,7 +38617,7 @@ function profileEntries(source = standard_profile_default) {
       continue;
     const match = line.match(/^\.Plugin\.Load\("([^"]+)"\)/);
     if (!match)
-      throw new Error(`Invalid RiX-Web profile line: ${line}`);
+      throw new Error(`Invalid RiX Playground profile line: ${line}`);
     entries.push({ id: match[1].toLowerCase(), source: line });
   }
   return entries;
@@ -38658,7 +38658,7 @@ function resolvePluginProfile(profile = {}, availablePluginIds = []) {
     if (selectedIds.has(id))
       continue;
     if (available.size && !available.has(id)) {
-      warnings.push(`Unknown RiX-Web plugin '${id}' was ignored.`);
+      warnings.push(`Unknown RiX Playground plugin '${id}' was ignored.`);
       continue;
     }
     selected.push({ id, source: `.Plugin.Load(${JSON.stringify(id)});` });
@@ -38778,12 +38778,12 @@ function expandDeclarativeWebControls(source, tokenize) {
 function installWebControlCapabilities(systemContext, { onControl = null } = {}) {
   for (const [name, constructor] of constructors) {
     if (systemContext.has(name)) {
-      throw new Error(`RiX-Web control shortcut conflicts with .${name}`);
+      throw new Error(`RiX Playground control shortcut conflicts with .${name}`);
     }
     systemContext.register(name, {
       pure: true,
       groups: ["Output", "Controls"],
-      doc: declarativeControls.has(name.toUpperCase()) ? `RiX-Web shortcut for .Controls.${name}; supports $$name := .${name}(initial, ...)` : `RiX-Web shortcut for .Controls.${name}`,
+      doc: declarativeControls.has(name.toUpperCase()) ? `RiX Playground shortcut for .Controls.${name}; supports $$name := .${name}(initial, ...)` : `RiX Playground shortcut for .Controls.${name}`,
       impl(args, context, evaluate) {
         const runtime = {
           context,
@@ -38986,7 +38986,7 @@ var helpGroups = [
       ["1/3:2/3", "Create an exact closed interval; endpoint orientation is retained."],
       ["Explore exact value", "Open exact rational or interval number lines, inspect bounded arithmetic and linked fractions, edit endpoints, and export SVG, HTML or text."],
       ["Arrow keys", "In the interval explorer, move a focused endpoint or the whole interval by the exact selected step."],
-      [".Graphics", "Build portable figures that RiX Web can render and make interactive."]
+      [".Graphics", "Build portable figures that RiX Playground can render and make interactive."]
     ]
   },
   {
@@ -39009,7 +39009,7 @@ var helpGroups = [
     items: [
       ["$$x := 2", "Declare a reactive value; the dashboard displays it live."],
       ["$x", "Read x and record a dependency inside another reactive definition."],
-      ['$$x := .Slider(2, 0:5, 1/2, "x")', "Declare x at 2 and give it an exact RiX-Web dashboard slider."],
+      ['$$x := .Slider(2, 0:5, 1/2, "x")', "Declare x at 2 and give it an exact RiX Playground dashboard slider."],
       ['.Slider($$x, 0:5, 1/2, "x")', "Attach a dashboard slider to an existing reactive identity."],
       ["Dashboard", "Open live values, explicit controls, formulas, dependencies, and diagnostics."]
     ]

@@ -53,10 +53,10 @@ test("URL profile controls support fresh, additions, removals, repeats, and unkn
     const changed = resolvePluginProfile(pluginProfileFromUrl("https://rix.example/?plugins-remove=stats&plugins-add=document,missing"), [...STANDARD_PLUGIN_IDS, "document"]);
     expect(changed.plugins).not.toContain("stats");
     expect(changed.plugins).toContain("document");
-    expect(changed.warnings).toEqual(["Unknown RiX-Web plugin 'missing' was ignored."]);
+    expect(changed.warnings).toEqual(["Unknown RiX Playground plugin 'missing' was ignored."]);
 });
 
-test("a marked RiX-Web profile can be stripped before replay", () => {
+test("a marked RiX Playground profile can be stripped before replay", () => {
     const source = `/**\nplugins: [numerics]\n**/\n## RIX-WEB-PROFILE-BEGIN standard-v1\n.Plugin.Load("numerics");\n## RIX-WEB-PROFILE-END\nx := 3;\n`;
     expect(stripMarkedPluginProfile(source)).not.toContain("Plugin.Load");
     expect(stripMarkedPluginProfile(source)).toContain("x := 3;");

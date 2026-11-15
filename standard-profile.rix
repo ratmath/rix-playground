@@ -1,4 +1,4 @@
-## RiX-Web standard calculator profile.
+## RiX Playground standard calculator profile.
 ## Keep one directly selected plugin on each line. Dependencies load automatically.
 ## Bare imports favor names expected in a scientific or graphical calculator;
 ## aliases make collisions explicit. This file is executable by the RiX CLI too.

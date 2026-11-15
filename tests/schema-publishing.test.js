@@ -5,7 +5,7 @@ import path from "node:path";
 const webRoot = path.resolve(import.meta.dir, "..");
 const schemaRoot = path.resolve(webRoot, "../rix/schemas");
 
-test("workspace schemas are published at their canonical RiX Web paths", async () => {
+test("workspace schemas are published at their canonical RiX Playground paths", async () => {
     for (const name of await readdir(schemaRoot)) {
         if (!name.endsWith(".json")) continue;
         const source = await Bun.file(path.join(schemaRoot, name)).text();

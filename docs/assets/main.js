@@ -1314,7 +1314,7 @@ function parseSession(text) {
     throw new Error("This is not a valid RiX session file.");
   }
   if (!value || value.format !== RIX_SESSION_FORMAT) {
-    throw new Error("This file is not a RiX Web session.");
+    throw new Error("This file is not a RiX Playground session.");
   }
   if (value.version !== RIX_SESSION_VERSION) {
     throw new Error(`RiX session version ${value.version} is not supported.`);
@@ -1340,14 +1340,14 @@ function serializePortableSession(snapshot) {
 plugins: [${plugins}]
 operator-files: []
 **/`,
-    "## Portable session exported by RiX-Web."
+    "## Portable session exported by RiX Playground."
   ];
   if (profile.source.trim()) {
-    parts.push("## A RiX-Web host that already applied this profile may remove the following marked block.", `## RIX-WEB-PROFILE-BEGIN ${profile.name}`, profile.source.trim(), "## RIX-WEB-PROFILE-END");
+    parts.push("## A RiX Playground host that already applied this profile may remove the following marked block.", `## RIX-WEB-PROFILE-BEGIN ${profile.name}`, profile.source.trim(), "## RIX-WEB-PROFILE-END");
   }
   parts.push(statement(`<* ${JSON.stringify(session.numberConfig.input)}`), statement(`*> ${JSON.stringify(session.numberConfig.display)}`), ...session.transcript.filter(({ source }) => !webMetaCommand(source)).map(({ source }) => statement(source)), ...session.reactiveInputs.map(({ name, source }) => statement(`$${name} := ${source}`)));
   if (session.input) {
-    parts.push("## Unexecuted RiX-Web draft:", ...session.input.split(`
+    parts.push("## Unexecuted RiX Playground draft:", ...session.input.split(`
 `).map((line) => `## ${line}`));
   }
   return `${parts.filter(Boolean).join(`

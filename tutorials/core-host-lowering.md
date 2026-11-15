@@ -46,7 +46,7 @@ float plugin can offer `.float.Sin(x)` while retaining data such as
 .Plugin.Load("...")  # core-facing request to a host plugin catalog
 ```
 
-RiX-Web activates its explicitly reviewed first-party browser plugin profile
+RiX Playground activates its explicitly reviewed first-party browser plugin profile
 for every ordinary session. That is a host policy, not a language guarantee:
 other RiX hosts may expose a smaller catalog or require `.Plugin.Load(...)`.
 The examples in this chapter therefore continue to use the portable core

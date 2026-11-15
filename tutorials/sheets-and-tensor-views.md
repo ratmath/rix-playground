@@ -218,7 +218,7 @@ Select a dependent cell to see the addresses it actually read during the most
 recent evaluation epoch. This reports dynamic graph edges rather than merely
 scanning the source for address-shaped text.
 
-Try entering `grid[1,1] + 1` in the first cell. RiXCel marks the cycle while
+Try entering `grid[1,1] + 1` in the first cell. RiX Ripple marks the cycle while
 continuing to display that cell's last committed value. Parse and runtime
 failures behave the same way: the formula bar reports the error, a failed parse
 keeps the attempted text for correction, and a later valid edit clears the
@@ -246,7 +246,7 @@ result is now `23`. A self-reference such as
 `@{ grid[1,1] + 1 }` reports a cycle instead of reading the previously
 committed value.
 
-## Save and rebuild a RiXCel document
+## Save and rebuild a RiX Ripple document
 
 `.RiXCelExport` produces versioned JSON from authoritative formula source.
 `.RiXCelImport` validates that JSON, recompiles every formula in a fresh
@@ -281,7 +281,7 @@ cosmetic headers from the document-owned view. The file stores the dense
 rank-N shape, stable IDs, formula bodies, assignment modes, and JSON-safe view
 metadata. It does not trust or persist compiled IR, values, dependencies, or
 diagnostics. A standalone host can save the `saved` string with a `.rixcel`
-extension. The standalone RiXCel editor supplies browser open/save controls;
+extension. The standalone RiX Ripple editor supplies browser open/save controls;
 this tutorial page intentionally keeps document storage outside its session.
 
 ## Exchange CSV and TSV values safely
@@ -367,7 +367,7 @@ dependents in one atomic epoch.
 This example uses three editable formulas. The first two determine a point and
 their average. The third is both the point radius and a coefficient captured by
 a locally defined `Scale` function. `$$frag` makes the complete Fragment a
-reactive value, and the final `$frag` tells RiX Web to observe and render it:
+reactive value, and the final `$frag` tells RiX Playground to observe and render it:
 
 ```rix edu
 values := .FormulaSheet({:1x3: @{120}, @{40}, @{8}});
@@ -405,7 +405,7 @@ $frag ;
 ```
 
 Edit any formula in the embedded grid. The sheet commit propagates through the
-named graph nodes before RiX Web redraws the observed Fragment. Changing the
+named graph nodes before RiX Playground redraws the observed Fragment. Changing the
 first value moves the point and refreshes both displayed calculations; changing
 the third changes the radius and the function result without recomputing the
 average.
@@ -423,13 +423,13 @@ event into a graph source and follows this same propagation path.
 ## From a sheet view to a workbook
 
 Prerequisites: Shaped values and Cells and assignment. The runnable examples
-above use the RiX Web Sheet host. RiXCel adds workbook operations: independent
+above use the RiX Playground Sheet host. RiX Ripple adds workbook operations: independent
 document namespaces, explicit cross-document exports, structural editing with
 undo/redo, named regions, per-region formatting, and XLSX value interchange.
 These are application commands, not extra methods silently granted to every
 `.Sheet` value.
 
-In RiXCel, **Tensor planes, regions and formatting** offers two explicit choices:
+In RiX Ripple, **Tensor planes, regions and formatting** offers two explicit choices:
 **Snapshot into empty cells** copies exact scalar values as one undoable change;
 **Link read-only view** keeps a session-local view that refreshes after edits.
 Neither is implicit formula spill. Snapshots reject occupied targets atomically;

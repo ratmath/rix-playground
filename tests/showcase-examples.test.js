@@ -44,7 +44,7 @@ test("showcase search covers descriptions, tags, and source", () => {
     expect(showcaseExample("missing-example")).toBeNull();
 });
 
-test("every help showcase executes successfully in a fresh RiX-Web session", async () => {
+test("every help showcase executes successfully in a fresh RiX Playground session", async () => {
     for (const example of showcaseExamples) {
         const repl = createRixRepl();
         const response = await repl.runAsync(example.source);

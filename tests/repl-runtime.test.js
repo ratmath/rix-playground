@@ -1029,7 +1029,7 @@ test("quick help exposes the calculator's number and interval surfaces", () => {
     expect(scientificHelp.groups.flatMap(({ items }) => items).map(([syntax]) => syntax)).toContain('*> "sci[10]"');
 });
 
-test("RiX-Web discovers reactive values and concise dashboard controls", () => {
+test("RiX Playground discovers reactive values and concise dashboard controls", () => {
     const repl = createRixRepl();
     expect(repl.run(`
         $$width := 3;
@@ -1071,7 +1071,7 @@ test("RiX-Web discovers reactive values and concise dashboard controls", () => {
     expect(amountControl.validateCandidate(repl.run("-1").value)).toBe("must be positive");
 });
 
-test("RiX-Web value controls can declare and return their reactive cells", async () => {
+test("RiX Playground value controls can declare and return their reactive cells", async () => {
     const repl = createRixRepl();
     const declared = repl.run('$$width := .Slider(3, 0:10, 1/2, "Width")');
     expect(declared.type).toBe("result");

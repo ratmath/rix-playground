@@ -4,7 +4,7 @@ RatCalc is a static browser calculator and learning site for the Rational
 Interval Expression Language. It uses the actual RiX parser and evaluator, so
 values and a workspace persist across executed commands and tutorial cells.
 
-Each RiX-Web session applies the curated
+Each RiX Playground session applies the curated
 [standard calculator profile](STANDARD_PROFILE.md). Its checked-in RiX prelude
 loads common exact numerics, certified elementary and special functions,
 algebra, statistics, graphics,
@@ -31,7 +31,7 @@ editable inputs. Pin/group settings are presentation state saved with the
 session. History charts retain up to 64 distinct observations for the first 128
 identities, with exact tables, source reinsertion, and SVG export. Older
 observations are discarded visibly; histories are not saved or collected as an
-unlimited graph event log. RiX-Web provides concise `.Slider`, `.Input`, `.Choice`,
+unlimited graph event log. RiX Playground provides concise `.Slider`, `.Input`, `.Choice`,
 `.Toggle`, `.Range`, `.Reset`, `.Action`, and `.Hold` shortcuts; the portable
 language forms remain available under `.Controls`.
 
@@ -54,7 +54,7 @@ The Help dialog includes a searchable, one-click showcase gallery. Its examples
 range from tiny exact-number calculations and static structured output to live
 financial and graphical models, reactive polynomial coefficients, and a cubic
 recentered by repeated synthetic division. Every gallery program is executed in
-a fresh RiX-Web session by the test suite.
+a fresh RiX Playground session by the test suite.
 
 ## Develop and build
 
@@ -65,7 +65,7 @@ bun run build
 bun run serve
 ```
 
-Use `bun run test:short` for browser contracts affected by ordinary RiX-Web
+Use `bun run test:short` for browser contracts affected by ordinary RiX Playground
 work, `bun run test:ten` for the medium/full browser set, and
 `bun run test:suite` (or `bun run test`) before integration. The repository
 uses the umbrella's current `../rix` checkout when generating the approved

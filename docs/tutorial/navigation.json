@@ -732,7 +732,7 @@
       "parent": "12",
       "file": "graphics-interaction-guide.html",
       "title": "Graphics interaction guide",
-      "description": "Use every 2D, 3D, geometry, timeline, text, and audio control in RiX Web.",
+      "description": "Use every 2D, 3D, geometry, timeline, text, and audio control in RiX Playground.",
       "pluginGroup": false,
       "status": "implemented"
     },

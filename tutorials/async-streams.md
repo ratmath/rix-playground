@@ -105,7 +105,7 @@ $latest;
 ```
 
 The detached block owns and closes the stream when it finishes or when its
-supervisor shuts down. Resetting or leaving a RiX Web session cancels a pending
+supervisor shuts down. Resetting or leaving a RiX Playground session cancels a pending
 pull, closes the task-owned source, and gives cleanup a bounded grace period.
 The reactive alias is the explicit publication channel; ordinary hidden outer
 variables remain inaccessible.

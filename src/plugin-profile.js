@@ -17,7 +17,7 @@ function profileEntries(source = standardProfileSource) {
         const line = rawLine.trim();
         if (!line || line.startsWith("##")) continue;
         const match = line.match(/^\.Plugin\.Load\("([^"]+)"\)/);
-        if (!match) throw new Error(`Invalid RiX-Web profile line: ${line}`);
+        if (!match) throw new Error(`Invalid RiX Playground profile line: ${line}`);
         entries.push({ id: match[1].toLowerCase(), source: line });
     }
     return entries;
@@ -62,7 +62,7 @@ export function resolvePluginProfile(profile = {}, availablePluginIds = []) {
     for (const id of commaValues(profile?.add || [])) {
         if (selectedIds.has(id)) continue;
         if (available.size && !available.has(id)) {
-            warnings.push(`Unknown RiX-Web plugin '${id}' was ignored.`);
+            warnings.push(`Unknown RiX Playground plugin '${id}' was ignored.`);
             continue;
         }
         selected.push({ id, source: `.Plugin.Load(${JSON.stringify(id)});` });
@@ -77,7 +77,7 @@ export function resolvePluginProfile(profile = {}, availablePluginIds = []) {
     };
 }
 
-/** Mark generated preload code so RiX-Web hosts may strip it after applying the profile. */
+/** Mark generated preload code so RiX Playground hosts may strip it after applying the profile. */
 export function markedPluginProfileSource(profile) {
     const source = String(profile?.source || "").trim();
     const name = String(profile?.name || RIX_WEB_PROFILE_NAME).trim();

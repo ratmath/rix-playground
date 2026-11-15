@@ -69,7 +69,7 @@ function nextCodeToken(tokens, index) {
 }
 
 /**
- * Expand RiX-Web's calculator-friendly reactive declarations into ordinary
+ * Expand RiX Playground's calculator-friendly reactive declarations into ordinary
  * RiX reactive state plus a concise control attachment. Portable RiX and the
  * canonical .Controls constructors remain untouched.
  */
@@ -124,18 +124,18 @@ export function expandDeclarativeWebControls(source, tokenize) {
         ), source);
 }
 
-/** Install concise RiX-Web aliases for the portable .Controls constructors. */
+/** Install concise RiX Playground aliases for the portable .Controls constructors. */
 export function installWebControlCapabilities(systemContext, { onControl = null } = {}) {
     for (const [name, constructor] of constructors) {
         if (systemContext.has(name)) {
-            throw new Error(`RiX-Web control shortcut conflicts with .${name}`);
+            throw new Error(`RiX Playground control shortcut conflicts with .${name}`);
         }
         systemContext.register(name, {
             pure: true,
             groups: ["Output", "Controls"],
             doc: declarativeControls.has(name.toUpperCase())
-                ? `RiX-Web shortcut for .Controls.${name}; supports $$name := .${name}(initial, ...)`
-                : `RiX-Web shortcut for .Controls.${name}`,
+                ? `RiX Playground shortcut for .Controls.${name}; supports $$name := .${name}(initial, ...)`
+                : `RiX Playground shortcut for .Controls.${name}`,
             impl(args, context, evaluate) {
                 const runtime = {
                     context,

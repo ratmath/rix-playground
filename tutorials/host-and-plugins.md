@@ -57,7 +57,7 @@ default camelCase mount, exports, and capability groups.
 A discovered mount can be visible to the static checker while still refusing
 calls until loading is approved. JavaScript plugin files additionally require
 an installer that the host explicitly trusts; discovering a file never imports
-or runs arbitrary JavaScript. RiX-Web has already reviewed its bundled browser
+or runs arbitrary JavaScript. RiX Playground has already reviewed its bundled browser
 catalog and applies a curated calculator profile when a session starts;
 explicit loads remain useful in portable scripts and are idempotent. Teaching
 entries in the `Examples` group remain unloaded until requested. A load may
@@ -85,11 +85,11 @@ approximate-math plugin is the intended model:
 ```
 
 Those calls are examples of a plugin contract, not promises that every RiX
-host exposes floating-point computation. RiX-Web's reviewed profile includes
+host exposes floating-point computation. RiX Playground's reviewed profile includes
 the Float plugin, but Float construction remains explicit and never silently
 mixes approximate values into exact arithmetic.
 
-## RiX-Web's standard calculator profile
+## RiX Playground's standard calculator profile
 
 The checked-in `standard-profile.rix` file is the authoritative browser
 baseline. It loads Numerics, Float, algebra, linear algebra, solving,
@@ -117,7 +117,7 @@ removing a direct entry does not forbid a remaining plugin from requiring it.
 Saved `.rix-session` files retain the effective profile. **Export .rix** emits
 portable source with a CLI plugin header, the lexical imports, settings, and
 executed commands. The profile block has explicit begin/end comments, allowing
-RiX-Web to omit it when the same profile is already active.
+RiX Playground to omit it when the same profile is already active.
 
 ## Display names and matching
 

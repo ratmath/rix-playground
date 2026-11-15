@@ -1,10 +1,10 @@
 ---
 number: 12i
 title: Graphics interaction guide
-description: Use every 2D, 3D, geometry, timeline, text, and audio control in RiX Web.
+description: Use every 2D, 3D, geometry, timeline, text, and audio control in RiX Playground.
 ---
 
-RiX graphics stay as retained mathematical values. RiX Web projects those
+RiX graphics stay as retained mathematical values. RiX Playground projects those
 values into visual, interactive, textual, and audio views. This guide collects
 the controls added across the graphics roadmap in one place.
 
@@ -173,7 +173,7 @@ bisector := .geometry.PerpendicularBisector(a,b);
 .geometry.Draw([circle,bisector,a,b,c], {= view=[-1,-2,7,6], size=[560,480] }) ;
 ```
 
-For `.geometry.Workbench(graph, options)`, RiX Web adds an object tree and
+For `.geometry.Workbench(graph, options)`, RiX Playground adds an object tree and
 exact property inspector. Select tree entries with pointer or keyboard, move
 declared free-point handles, undo and redo session moves, and export the
 portable `rix.geometry.construction-record@1` JSON. Dependencies and unresolved
@@ -297,7 +297,7 @@ text alternative intact.
 Plot option `audio={= tempo=..., frequency=[low,high], cuePalette={= ... } }`
 sets renderer-neutral defaults. Cue palette keys are `exact`,
 `certifiedEnclosure`, `approximate`, `unresolved`, `conjectural`, and `general`.
-When `preferencesKey` is present, RiX Web separately persists the audio series,
+When `preferencesKey` is present, RiX Playground separately persists the audio series,
 range, speed, tempo, pitch, cues, timbre, direction, stereo, and mute choices.
 
 :::challenge Build an accessible trace
