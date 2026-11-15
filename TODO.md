@@ -1,4 +1,4 @@
-# RiX Web product TODO
+# RiX Playground product TODO
 
 > Reconciled 2026-09-19. The umbrella `ratmath/WORK_PLAN.md` orders execution
 > (O4, H1–H3, N1). Reuse the existing viewport/selection and SVG approximation
@@ -51,7 +51,7 @@ and accessibility behavior belong here. Generated files under `docs/` and
   browser.
 - [x] Ensure every view has a useful static `Graphic`/SVG snapshot with labels
   and alternative text so the mathematical result remains portable outside
-  RiX Web.
+  RiX Playground.
 
 ## Mathematical graphic interaction and accessibility
 

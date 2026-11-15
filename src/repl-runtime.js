@@ -99,7 +99,7 @@ export const helpGroups = [
             ["1/3:2/3", "Create an exact closed interval; endpoint orientation is retained."],
             ["Explore exact value", "Open exact rational or interval number lines, inspect bounded arithmetic and linked fractions, edit endpoints, and export SVG, HTML or text."],
             ["Arrow keys", "In the interval explorer, move a focused endpoint or the whole interval by the exact selected step."],
-            [".Graphics", "Build portable figures that RiX Web can render and make interactive."],
+            [".Graphics", "Build portable figures that RiX Playground can render and make interactive."],
         ],
     },
     {
@@ -122,7 +122,7 @@ export const helpGroups = [
         items: [
             ["$$x := 2", "Declare a reactive value; the dashboard displays it live."],
             ["$x", "Read x and record a dependency inside another reactive definition."],
-            ["$$x := .Slider(2, 0:5, 1/2, \"x\")", "Declare x at 2 and give it an exact RiX-Web dashboard slider."],
+            ["$$x := .Slider(2, 0:5, 1/2, \"x\")", "Declare x at 2 and give it an exact RiX Playground dashboard slider."],
             [".Slider($$x, 0:5, 1/2, \"x\")", "Attach a dashboard slider to an existing reactive identity."],
             ["Dashboard", "Open live values, explicit controls, formulas, dependencies, and diagnostics."],
         ],

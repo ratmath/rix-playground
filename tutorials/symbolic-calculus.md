@@ -181,7 +181,7 @@ H := .Transform(P, :decompose, 5, 5, 5, 5);
 ```
 
 The complete list of rewrites and non-rewrites is in the [symbolic transformation
-reference](https://jostylr.github.io/rix/design/eval/transformation-reference.html).
+reference](https://docs.rix.ratmath.com/design/eval/transformation-reference.html).
 
 ## Speccability
 

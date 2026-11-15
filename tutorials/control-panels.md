@@ -31,9 +31,9 @@ $view ;
 The control receives `$$x`, the stable reactive identity. The text reads `$x`
 through its interpolation, so it is rebuilt after each committed move.
 
-## Use the RiX-Web dashboard shortcuts
+## Use the RiX Playground dashboard shortcuts
 
-RiX-Web can collect reactive values into its **Dashboard** drawer without
+RiX Playground can collect reactive values into its **Dashboard** drawer without
 requiring a Fragment or ControlPanel. Every `$$` value appears as a live
 readout. A short value-control constructor can declare the initial value and
 make that reactive identity editable in one expression:
@@ -49,7 +49,7 @@ $area ;
 Open **Dashboard** after running the cell. `width` and `height` have exact
 sliders, while `area` is a read-only derived value showing its dependencies.
 The concise `.Slider`, `.Input`, `.Choice`, `.Toggle`, `.Range`, `.Reset`,
-`.Action`, and `.Hold` names are RiX-Web conveniences. Use the canonical
+`.Action`, and `.Hold` names are RiX Playground conveniences. Use the canonical
 `.Controls.*` forms when authoring portable output intended for another host.
 The declaration forms for editable values are:
 

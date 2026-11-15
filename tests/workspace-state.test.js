@@ -33,7 +33,7 @@ test("RiX session files preserve commands, draft input, mode, settings, and dash
         pluginProfile: { name: "standard-v1", plugins: ["numerics"], source: '.Plugin.Load("numerics"); .numerics[:Exp];' },
         savedAt: "2026-08-15T12:00:00.000Z",
     }));
-    expect(() => parseSession('{"format":"something-else","version":1}')).toThrow("not a RiX Web session");
+    expect(() => parseSession('{"format":"something-else","version":1}')).toThrow("not a RiX Playground session");
 });
 
 test("portable session export embeds its profile and replays only executable RiX", () => {

@@ -10,7 +10,7 @@ that retained mathematical object.
 The original six priorities below established the retained interaction,
 plotting, geometry, timeline, and accessibility foundations. The next program
 turns the five largest comparative gaps into the active product priorities.
-The companion RiX Notebook project at
+The companion RiX Weave project at
 `rix-nb/examples/graphics-priorities/` supplies five executable studies for
 each priority and is the acceptance corpus shared by browser and notebook
 hosts.
@@ -128,7 +128,7 @@ discrete. Formula-part correspondence algorithms and MP4/WebM rendering remain.
 ## Foundation 1. Shared 2D navigation and inspection — baseline implemented
 
 Ship one `rix.viewport@1` / `rix.selection@1` interaction layer for every SVG
-`Graphic` mounted in RiX Web.
+`Graphic` mounted in RiX Playground.
 
 - Pointer and touch: drag the scene to pan, wheel/trackpad zoom at the pointer,
   click/tap without dragging to select, and double-click to reset.
@@ -155,7 +155,7 @@ unrelated mark. Bracket shortcuts provide object traversal and Shift-brackets
 jump by ten. The SVG now explicitly references its exact inspector and polite
 live status, while the static text-object list tracks the current semantic
 selection. These controls and all six graphics baselines are documented in the
-RiX Web **Graphics interaction guide**.
+RiX Playground **Graphics interaction guide**.
 
 Further Priority 1 work remains: automated real-device gesture matrices,
 screen-reader testing with blind users, and usability measurement on very large
@@ -372,7 +372,7 @@ The baseline now derives deterministic `rix.graphics.text@1` and
 Graphic has a structured text disclosure with axes, exactness status, concise
 sample tables, semantic objects, points of interest, and unresolved regions.
 Sampled sign changes and extrema are explicitly described as non-certified.
-For retained 2D series, RiX Web adds a no-autoplay Web Audio trace with
+For retained 2D series, RiX Playground adds a no-autoplay Web Audio trace with
 play/pause, stepping, seek, domain range, direction, speed, waveform, stereo,
 mute, series solo, and sequential overview controls, all reachable by keyboard.
 The audio host performs no evaluator I/O and leaves the full text alternative

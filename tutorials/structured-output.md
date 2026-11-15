@@ -7,7 +7,7 @@ description: Keep tables, documents, slides, and graphics meaningful across RiX 
 Most expressions return a number, string, array, or map. An output value carries
 an additional promise about how it should be presented. A table remains a table,
 a plotted curve remains a graphic, and a report remains a sequence of document
-parts. That lets the CLI, RiX Web, and a notebook choose an appropriate renderer
+parts. That lets the CLI, RiX Playground, and a notebook choose an appropriate renderer
 without asking your calculation to produce HTML or SVG itself.
 
 Prerequisites: [Collections](collections.html) and [Transforming data](transformations.html).
@@ -19,7 +19,7 @@ controls are later choices. The host decides how to render the same value.
 ## Output is still a value
 
 Create an output value with a system constructor, bind it like any other value,
-then return it. RiX Web renders this small table as a table; a text-only host can
+then return it. RiX Playground renders this small table as a table; a text-only host can
 still show the same headers and rows faithfully.
 
 ```rix edu

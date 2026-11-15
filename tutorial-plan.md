@@ -47,7 +47,7 @@ non-runnable acceptance documentation; they are not an implementation promise.
 | Exact-number views | [Notation](tutorials/number-notation.md), [core mathematics](tutorials/core-mathematics.md) | Radix, continued-fraction and Stern–Brocot plugin tutorials; formatted digits do not replace exact values. |
 | Tensor coordinates | [Shaped values](tutorials/tensors.md), [sheet views](tutorials/sheets-and-tensor-views.md) | Linalg tutorial covers Frames, sparse coordinates, projections and exact support; Float tutorial covers explicitly approximate typed adapters. |
 | Async cancellation | [Async](tutorials/async-concurrency.md), [streams](tutorials/async-streams.md) | Cooperative cancellation, cleanup, host capability policy and transferable values; concurrency is not hard isolation. |
-| RiXCel interchange | [Sheet foundation](tutorials/sheets-and-tensor-views.md) | Workbook namespaces, history, explicit tensor regions and XLSX values belong to the Cel host; a browser Sheet is not the whole workbook application. |
+| RiX Ripple interchange | [Sheet foundation](tutorials/sheets-and-tensor-views.md) | Workbook namespaces, history, explicit tensor regions and XLSX values belong to the Cel host; a browser Sheet is not the whole workbook application. |
 
 The [end-to-end capstones](../rix/documentation/tutorial/capstones.md) and
 [executable source guide](../rix/examples/capstones/README.md) connect these six

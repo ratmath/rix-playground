@@ -1,6 +1,6 @@
-# RiX-Web standard calculator profile
+# RiX Playground standard calculator profile
 
-RiX-Web starts ordinary sessions with a small, checked-in RiX prelude. The
+RiX Playground starts ordinary sessions with a small, checked-in RiX prelude. The
 authoritative file is [`standard-profile.rix`](standard-profile.rix). It keeps
 one directly selected plugin per line and uses lexical selective imports, so
 the same file is readable configuration and executable RiX source.
@@ -62,7 +62,7 @@ rix ratcalc-YYYY-MM-DD.rix
 ```
 
 The generated prelude is enclosed by `RIX-WEB-PROFILE-BEGIN` and
-`RIX-WEB-PROFILE-END` comments. A RiX-Web host that already applied the saved
+`RIX-WEB-PROFILE-END` comments. A RiX Playground host that already applied the saved
 profile may strip that block before replay, avoiding redundant idempotent loads.
 The unexecuted input draft is preserved as comments.
 

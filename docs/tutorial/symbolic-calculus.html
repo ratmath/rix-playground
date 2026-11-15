@@ -71,7 +71,7 @@ Q := {#x# x^2 + 1 };
 G := .Transform(P, :gadic, Q);
 H := .Transform(P, :decompose, 5, 5, 5, 5);
 {: G, .Transform(H, :distribute, 5), .Transform(H, :center, 5) } ;</textarea><div class="tutorial-output" data-tutorial-output></div></section>
-<p>The complete list of rewrites and non-rewrites is in the <a href="https://jostylr.github.io/rix/design/eval/transformation-reference.html" target="_blank" rel="noreferrer">symbolic transformation reference</a>.</p>
+<p>The complete list of rewrites and non-rewrites is in the <a href="https://docs.rix.ratmath.com/design/eval/transformation-reference.html" target="_blank" rel="noreferrer">symbolic transformation reference</a>.</p>
 <h2>Speccability</h2>
 <p>Automatic specs intentionally cover a safe pure subset: positional functions built from exact constants, identifiers, negation, arithmetic, division, and exact powers. <code>.Speccability</code> explains whether a function fits that profile; <code>.Spec</code> attaches and returns the spec when analysis succeeds.</p>
 <section class="tutorial-cell"><header><span>Runnable RiX</span><button type="button" data-tutorial-run>Run cell</button></header><textarea class="tutorial-source" data-tutorial-source rows="5" spellcheck="false">F := x -&gt; x^2 + 1;

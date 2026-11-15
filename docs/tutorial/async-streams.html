@@ -43,7 +43,7 @@ result := (chunks |&gt;&gt; ..Upper).Collect();
         |&gt;_ ((event) -&gt; ($latest := event))
 };
 $latest;</textarea><div class="tutorial-output" data-tutorial-output></div></section>
-<p>The detached block owns and closes the stream when it finishes or when its supervisor shuts down. Resetting or leaving a RiX Web session cancels a pending pull, closes the task-owned source, and gives cleanup a bounded grace period. The reactive alias is the explicit publication channel; ordinary hidden outer variables remain inaccessible.</p>
+<p>The detached block owns and closes the stream when it finishes or when its supervisor shuts down. Resetting or leaving a RiX Playground session cancels a pending pull, closes the task-owned source, and gives cleanup a bounded grace period. The reactive alias is the explicit publication channel; ordinary hidden outer variables remain inaccessible.</p>
 <h2>Own custom stream cleanup</h2>
 <p>Terminals close their source automatically. A custom source can additionally join the nearest code block&#039;s cleanup stack with <code>##_ ..Close</code>.</p>
 <section class="tutorial-cell"><header><span>Runnable RiX</span><button type="button" data-tutorial-run>Run cell</button></header><textarea class="tutorial-source" data-tutorial-source rows="5" spellcheck="false">result := {;

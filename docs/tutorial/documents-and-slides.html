@@ -11,7 +11,7 @@
     .Paragraph(&quot;All values in this report are exact.&quot;),
     .Figure(summary, &quot;Measurements for one square&quot;, &quot;fig:square&quot;)
 ]) ;</textarea><div class="tutorial-output" data-tutorial-output></div></section>
-<p>The label is useful to a renderer or exporter even though RiX Web simply shows the figure in place. Keep labels stable when you expect a document to grow.</p>
+<p>The label is useful to a renderer or exporter even though RiX Playground simply shows the figure in place. Keep labels stable when you expect a document to grow.</p>
 <h2>Write a compact document template</h2>
 <p>For text-heavy reports, <code>@&quot;&quot;&quot;...&quot;&quot;&quot;</code> makes a <code>Fragment</code> directly. Blank lines separate document blocks. Prefix a block with <code>h1:</code> through <code>h6:</code> to start a section, or use <code>fig:</code> / <code>table:</code> for a captioned standalone value. <code>@{...}</code> evaluates now and inserts the resulting value.</p>
 <section class="tutorial-cell"><header><span>Runnable RiX</span><button type="button" data-tutorial-run>Run cell</button></header><textarea class="tutorial-source" data-tutorial-source rows="13" spellcheck="false">values := .Table(
@@ -94,7 +94,7 @@ image: @{diagram} {mime=image/svg+xml, alt=&quot;A proof diagram&quot;, width=32
 curve := .plot.Polynomial([1, -2, -1], [-1, 4]);
 .Figure(curve, &quot;Graph of x squared minus 2x minus 1&quot;, &quot;fig:curve&quot;) ;</textarea><div class="tutorial-output" data-tutorial-output></div></section>
 <h2>Build a deck one slide at a time</h2>
-<p><code>.Slide</code> attaches a title and optional metadata to one output value. <code>.Slides</code> preserves the order of those slides. RiX Web renders the current deck as a series of clearly separated slide sections; other hosts can add navigation or export without changing the RiX source.</p>
+<p><code>.Slide</code> attaches a title and optional metadata to one output value. <code>.Slides</code> preserves the order of those slides. RiX Playground renders the current deck as a series of clearly separated slide sections; other hosts can add navigation or export without changing the RiX source.</p>
 <section class="tutorial-cell"><header><span>Runnable RiX</span><button type="button" data-tutorial-run>Run cell</button></header><textarea class="tutorial-source" data-tutorial-source rows="33" spellcheck="false">.Plugin.Load(&quot;plot&quot;);
 count := 5;
 deck := .Slides(

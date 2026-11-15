@@ -5,7 +5,7 @@ description: Plot exact polynomials and understand portable SVG scenes.
 ---
 
 A `.Graphics.Graphic` is a portable two-dimensional scene. Its size and scene nodes are
-part of the value; RiX Web turns that value into SVG. The plotting helper is
+part of the value; RiX Playground turns that value into SVG. The plotting helper is
 deliberately small: it produces an ordinary graphic made of paths, so it works
 wherever the base graphic vocabulary works.
 
