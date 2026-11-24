@@ -101,6 +101,22 @@ Step := {?: /x; n::Even, m::Odd > n/ n:x:!m ? 1; 0 };
 [Step(1/2), Step(3/2), Step(-2)] ##@ == [1, 0, 1];
 ```
 
+## Slopes (advanced)
+
+`F'` differentiates each rule on its own region. Where two pieces meet, the
+derivative exists only if the pieces join with the same value and the same
+slope; otherwise it is `_`.
+
+```rix edu
+Ramp := {?: /x/ _:x:!0 ? 0; 0:x:!1 ? x; 1 };
+Join := {?: /x/ _:x:!1 ? x^2; 2x - 1 };
+[Ramp'(1/2), Ramp'(0), Join'(1), Join'(3)] ##@ == [1, _, 2, 2];
+```
+
+`Ramp` has a corner at 0, so `Ramp'(0)` is `_`. `Join` meets its second
+piece at 1 with value 1 and slope 2 from both sides, so `Join'(1)` is 2.
+Change `2x - 1` to `2x` and predict `Join'(1)`.
+
 ## Intervals and uncertain inputs (advanced)
 
 An interval input splits at the breakpoints, applies each rule to its part,
@@ -131,7 +147,7 @@ Under   := {?: /x, y/ 0:x:1 && 0:y:x ? 1; 0 };
 [Checker(1/2, 3/2), Checker(1/2, 1/2), Under(1/2, 1/4), Under(1/2, 3/4)] ##@ == [-1, 1, 1, 0];
 ```
 
-Point values work for any region. Breakpoints and interval input for more than
-one variable at a time are not implemented yet; see the
+Point values work for any region. Breakpoints, slopes and interval input for
+more than one variable at a time are not implemented yet; see the
 [piecewise reference](https://rix.ratmath.com/eval/piecewise.html) for the
 full rules and what is still to come.
