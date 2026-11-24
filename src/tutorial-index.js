@@ -23,6 +23,7 @@ const coreTutorials = [
     { number: "4c", parent: "4", file: "deferred.html", title: "Deferred execution", description: "Delay and evaluate code deliberately." },
     { number: "5", file: "functions.html", title: "Functions and scope", description: "Define and call a function, then explore scope and reusable rules." },
     { number: "5a", parent: "5", file: "function-basics.html", title: "Define and call", description: "Define, call, and pass a simple function." },
+    { number: "5a1", parent: "5", file: "piecewise.html", title: "Piecewise functions", description: "Build functions from regions, periodic waves, and typed integers." },
     { number: "5b", parent: "5", file: "scope.html", title: "Scope and imports", description: "Closures, outer names, and block headers." },
     { number: "5c", parent: "5", file: "multifunctions.html", title: "Multifunctions", description: "Prepared variants, dispatch, and recursion." },
     { number: "5d", parent: "5", file: "scoped-randomness.html", title: "Scoped reproducible randomness", description: "Reset, inherit, and locally replace deterministic random streams." },
