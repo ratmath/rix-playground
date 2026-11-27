@@ -270,10 +270,12 @@ x = 2;
 ];
 ```
 
-## Mathematical intent: RX1801 through RX1806
+## Mathematical intent: RX1801 through RX1807
 
 Exact division, structural fractions, approximate conversion, zero divisors,
-polynomial division, and refinement budgets each carry different contracts.
+polynomial division, refinement budgets, and piecewise arms each carry
+different contracts. In a piecewise function the first arm that holds wins, so
+an arm whose region the earlier arms already cover can never run.
 
 Problem:
 
@@ -288,7 +290,8 @@ q := `x + 1`.P();
 Divide(divisor) -> 1 / divisor;
 approx := .Float(2);
 refined = approx.Refine();
-{: left / right, first == second, p / q, Divide(2), refined };
+Clip := {?: /x/ 0:x:1 ? x; 0.5:x:!1 ? 2; 0 };
+{: left / right, first == second, p / q, Divide(2), refined, Clip(0.75) };
 ```
 
 Correction:
@@ -306,7 +309,8 @@ sameValue = first.Equivalent(second);
 quotient = p // q;
 remainder = p % q;
 RefineWithin = (real, request) -> real.Refine(request);
-{: Truncate(6, 8), sameShape, sameValue, quotient, remainder };
+Clip := {?: /x/ 0.5:x:!1 ? 2; 0:x:1 ? x; 0 };
+{: Truncate(6, 8), sameShape, sameValue, quotient, remainder, Clip(0.75) };
 ```
 
 ## Plugin headers: RX1901
